@@ -5,84 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="An unfinished, neutral T-shirt storefront for the IS117 Brand Studio. Build a brand through deliberate, visible design choices."
+      content="A plain white T-shirt. A reminder to move toward your goals. Explore ASCEND, a fictional Modernist brand studio storefront."
     />
-    <title>Your Brand — neutral storefront starter</title>
+    <title>ASCEND — Become your own next.</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
     <script src="shop.js" defer></script>
+    <script src="motion.js" defer></script>
   </head>
-  <body>
+  <body class="ascend">
     <a class="skip-link" href="#main">Skip to content</a>
-    <aside class="starter-notice" aria-label="Starter information">
-      <span
-        ><strong>Unfinished by design.</strong> This is a neutral teaching
-        starter. Replace its identity after your brand decisions.</span
-      >
-      <a href="studio.html"
-        >Enter the studio <span aria-hidden="true">↗</span></a
-      >
-    </aside>
     <header class="site-header wrap">
       <a
         class="brand-link"
         href="index.html"
-        aria-label="Your Brand storefront home"
-        ><img
+        aria-label="ASCEND storefront home"
+        ><svg
           class="wordmark"
-          src="assets/wordmark.svg"
-          alt="Neutral starter wordmark"
-          width="175"
-          height="26"
-      /></a>
+          viewBox="0 0 350 56"
+          role="img"
+          aria-label="ASCEND"
+        >
+          <use href="assets/ascend-wordmark.svg#wordmark" /></svg
+      ></a>
       <nav class="main-nav" aria-label="Main navigation">
-        <a class="nav-link" href="index.html" aria-current="page">Shop</a>
-        <a class="nav-link" href="styleguide.html">Style guide</a>
-        <a class="nav-link" href="studio.html"
+        <a class="nav-link" href="index.html" aria-current="page">Shop</a
+        ><a class="nav-link" href="styleguide.html">Style guide</a
+        ><a class="nav-link" href="studio.html"
           >Studio <span aria-hidden="true">↗</span></a
         >
       </nav>
-      <a class="bag-link" href="#demo-bag" aria-label="View demo bag"
+      <a class="bag-link" href="#demo-bag"
         >Demo bag <span id="bag-count" class="bag-count">0</span></a
       >
     </header>
-
-    <main id="main">
-      <section class="product-section wrap" aria-labelledby="product-title">
-        <div class="product-visual">
-          <div class="visual-label">
-            <span>001 / The starting point</span><span>Unbranded</span>
+    <main id="main" tabindex="-1">
+      <section class="ascend-hero wrap" aria-labelledby="hero-title">
+        <div class="hero-rule">
+          <span>ASCEND / Everyday essential</span
+          ><span>01 — Your direction</span>
+        </div>
+        <div class="hero-composition" data-reveal>
+          <div class="hero-copy">
+            <p class="eyebrow" data-reveal-item data-motion="left">
+              A clear start. Your way.
+            </p>
+            <h1 id="hero-title" data-reveal-item data-motion="left">
+              Become<br />your own<br /><span class="hero-next">next.</span>
+            </h1>
+            <div class="hero-action" data-reveal-control>
+              <a class="button button-primary" href="#product-form"
+                >Choose your next step. <span aria-hidden="true">↗</span></a
+              >
+              <p data-reveal-item data-motion="left">
+                One plain white T-shirt.<br />Room for your own meaning.
+              </p>
+            </div>
           </div>
-          <img
-            class="shirt-image"
-            src="assets/white-shirt.svg"
-            alt="Plain white, unbranded short-sleeved T-shirt"
-            width="800"
-            height="880"
-            fetchpriority="high"
-          />
-          <div class="image-caption">
-            <span>One product. Room for your point of view.</span
-            ><span aria-hidden="true">↙</span>
-          </div>
+          <figure class="hero-product">
+            <div
+              class="hero-orbit"
+              aria-hidden="true"
+              data-reveal-geometry
+            ></div>
+            <svg
+              class="hero-ring"
+              viewBox="0 0 100 100"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="50" cy="50" r="47" pathLength="1" /></svg
+            ><span
+              class="hero-axis"
+              aria-hidden="true"
+              data-reveal-geometry
+            ></span
+            ><img
+              class="shirt-image"
+              src="assets/white-shirt-realistic.png"
+              alt="AI-generated fictional visualization of a plain white crew-neck T-shirt with natural folds"
+              width="1312"
+              height="1200"
+              fetchpriority="high"
+            />
+            <figcaption>
+              <span>001 / The white T-shirt</span
+              ><span>No added product claims</span>
+              <span class="image-disclosure">
+                AI-generated fictional product visualization. Not a real product
+                photograph or evidence of materials or fit.
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+        <div class="hero-bottom">
+          <span>Confidence. Focus. Forward.</span
+          ><span
+            >Find your starting point <span aria-hidden="true">↓</span></span
+          >
+        </div>
+      </section>
+      <section
+        class="product-section wrap"
+        aria-labelledby="product-title"
+        data-reveal
+      >
+        <div class="product-story">
+          <p class="eyebrow">01 / Make it yours</p>
+          <h2 id="product-title" data-reveal-item data-motion="left">
+            An everyday<br />essential.<br /><span class="gold-text"
+              >Your meaning.</span
+            >
+          </h2>
+          <p class="product-intro" data-reveal-item data-motion="left">
+            ASCEND transforms an everyday essential into a reminder to keep
+            moving toward your goals.
+          </p>
+          <p class="product-description" data-reveal-item data-motion="left">
+            The original plain white T-shirt. Choose a demo size and try the bag
+            below.
+          </p>
+          <dl class="product-facts">
+            <div>
+              <dt>Color</dt>
+              <dd>White</dd>
+            </div>
+            <div>
+              <dt>Brand identity</dt>
+              <dd>ASCEND</dd>
+            </div>
+            <div>
+              <dt>Product claims</dt>
+              <dd>None supplied</dd>
+            </div>
+          </dl>
         </div>
         <div class="product-information">
-          <p class="eyebrow">
-            <span class="status-dot" aria-hidden="true"></span> Neutral product
-            / demo only
-          </p>
-          <h1 id="product-title">The white<br />T-shirt.</h1>
-          <p class="product-intro">A plain shirt. A place to begin.</p>
-          <p class="muted product-description">
-            This starter has a working product page and room for a brand. Its
-            audience, personality, message, and visual direction are still yours
-            to decide.
-          </p>
+          <div class="selection-heading" data-reveal-item>
+            <p class="eyebrow">Plain white T-shirt</p>
+            <span class="micro-label">Demo / 001</span>
+          </div>
           <div class="price-row">
-            <p class="price">$28 <span>USD</span></p>
+            <p class="price">
+              <span
+                class="price-accent"
+                aria-hidden="true"
+                data-reveal-item
+                data-motion="pop"
+              ></span
+              >$28 <span class="price-currency">USD</span>
+            </p>
             <span class="micro-label">Fictional demo price</span>
           </div>
-          <form id="product-form" class="product-form" novalidate>
+          <form
+            id="product-form"
+            class="product-form"
+            data-reveal-control
+            novalidate
+            tabindex="-1"
+          >
             <fieldset aria-describedby="size-help size-error">
               <legend>Choose a size</legend>
               <p id="size-help" class="field-help">
@@ -93,18 +174,15 @@
                   ><input type="radio" name="size" value="S" /><span
                     >S</span
                   ></label
-                >
-                <label class="size-option"
+                ><label class="size-option"
                   ><input type="radio" name="size" value="M" /><span
                     >M</span
                   ></label
-                >
-                <label class="size-option"
+                ><label class="size-option"
                   ><input type="radio" name="size" value="L" /><span
                     >L</span
                   ></label
-                >
-                <label class="size-option"
+                ><label class="size-option"
                   ><input type="radio" name="size" value="XL" /><span
                     >XL</span
                   ></label
@@ -122,31 +200,90 @@
             A classroom interaction, using fictional product data. No order,
             payment, or personal information is collected.
           </p>
-          <dl class="product-facts">
-            <div>
-              <dt>Color</dt>
-              <dd>White</dd>
-            </div>
-            <div>
-              <dt>Brand identity</dt>
-              <dd>Not decided yet</dd>
-            </div>
-            <div>
-              <dt>Product claims</dt>
-              <dd>None supplied</dd>
-            </div>
-          </dl>
         </div>
       </section>
-
+      <section
+        class="direction-section wrap"
+        aria-labelledby="direction-title"
+        data-reveal
+      >
+        <div>
+          <p class="eyebrow">02 / A personal direction</p>
+          <h2 id="direction-title" data-reveal-item data-motion="left">
+            Your goals.<br />Your pace.
+          </h2>
+          <p>
+            You don’t need to follow the same path to move forward. Bring your
+            own ambition. Leave room for your own way.
+          </p>
+        </div>
+        <div class="intention-panel">
+          <p class="intention-label" data-reveal-item>
+            What’s your direction today?
+          </p>
+          <p class="field-help">
+            An optional moment for you. No sign-up. No purchase needed.
+          </p>
+          <div id="intention-controls" hidden>
+            <div
+              class="intention-options"
+              data-reveal-control
+              role="group"
+              aria-label="Choose an optional intention"
+            >
+              <button
+                class="intention-button"
+                type="button"
+                data-intention="focus"
+                aria-pressed="false"
+              >
+                Focus</button
+              ><button
+                class="intention-button"
+                type="button"
+                data-intention="explore"
+                aria-pressed="false"
+              >
+                Explore
+              </button>
+            </div>
+            <p
+              id="intention-message"
+              class="intention-message"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              Choose a word, if it feels useful.
+            </p>
+            <button
+              id="clear-intention"
+              class="text-button"
+              type="button"
+              hidden
+            >
+              Clear my choice
+            </button>
+          </div>
+          <p id="intention-fallback" class="intention-message">
+            Focus on one next step, or leave room to explore. The direction is
+            yours.
+          </p>
+        </div>
+      </section>
       <section
         id="demo-bag"
         class="bag-section wrap"
         aria-labelledby="bag-title"
+        data-reveal
       >
         <div>
-          <p class="eyebrow">A small working interaction</p>
-          <h2 id="bag-title">Your demo bag.</h2>
+          <p class="eyebrow" data-reveal-item data-motion="pop">
+            03 / Your selection
+          </p>
+          <h2 id="bag-title" data-reveal-item data-motion="left">
+            Your demo bag.
+          </h2>
         </div>
         <div class="bag-details">
           <p
@@ -167,32 +304,15 @@
           </p>
         </div>
       </section>
-
-      <section class="starter-next wrap" aria-labelledby="next-title">
-        <p class="eyebrow">For the person building this site</p>
-        <h2 id="next-title">The shirt stays.<br />The story is your work.</h2>
-        <div>
-          <p>
-            Choose who this is for, decide what the brand should express, and
-            make those choices visible. Keep the storefront and its
-            <a href="styleguide.html">live style guide</a> in sync.
-          </p>
-          <a class="button button-secondary" href="studio.html"
-            >See the studio brief <span aria-hidden="true">↗</span></a
-          >
-        </div>
-      </section>
     </main>
-
     <footer class="site-footer wrap">
       <p>
-        IS117 Brand Studio <span class="footer-separator"> / </span> Neutral
-        starter
+        ASCEND <span class="footer-separator"> / </span> Become your own next.
       </p>
-      <p class="footer-tagline">Fictional product. Real design decisions.</p>
-      <a href="https://github.com/kaw393939/is117-brand-studio#readme"
-        >Project README <span aria-hidden="true">↗</span></a
-      >
+      <p class="footer-tagline">
+        A fictional storefront. A personal direction.
+      </p>
+      <a href="studio.html">About the studio ↗</a>
     </footer>
   </body>
 </html>

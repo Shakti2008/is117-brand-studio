@@ -1,0 +1,159 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #151515;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+
+.wrap {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 28px;
+  border-bottom: 1px solid #666;
+  font-size: 0.875rem;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.25em;
+}
+
+a:focus-visible {
+  outline: 3px solid #c4a15a;
+  outline-offset: 5px;
+}
+
+.skip {
+  position: absolute;
+  top: -100px;
+  padding: 12px;
+  background: #fff;
+  color: #000;
+}
+
+.skip:focus {
+  top: 8px;
+}
+
+main {
+  padding-block: 60px;
+}
+
+.eyebrow {
+  color: #c4a15a;
+  font-family: Consolas, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+h1 {
+  max-width: 15ch;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-block: 20px;
+}
+
+h2 {
+  font-size: 1.125rem;
+}
+
+.intro {
+  max-width: 60ch;
+  color: #ddd;
+  margin-bottom: 48px;
+}
+
+.nav-sample {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid #777;
+  border-top: 3px solid #8b1e2d;
+}
+
+.nav-sample span {
+  color: #ccc;
+  font-size: 0.875rem;
+}
+
+.nav-logo {
+  display: block;
+  width: 175px;
+  height: 28px;
+  flex: none;
+}
+
+.variants {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.panel {
+  min-width: 0;
+  padding: clamp(20px, 3vw, 40px);
+  border: 1px solid #777;
+}
+
+.light {
+  color: #000;
+  background: #fff;
+}
+
+.dark {
+  color: #fff;
+  background: #151515;
+}
+
+.large-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-block: 56px;
+}
+
+.panel p {
+  font-size: 0.875rem;
+}
+
+.rationale {
+  max-width: 80ch;
+  margin-top: 48px;
+}
+
+li {
+  margin-bottom: 12px;
+}
+
+footer {
+  border-top: 1px solid #666;
+  padding-block: 24px;
+  color: #ccc;
+}
+
+@media (width <= 650px) {
+  .variants {
+    grid-template-columns: 1fr;
+  }
+}

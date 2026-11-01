@@ -2,11 +2,15 @@
 
 **The same white T-shirt can carry very different meanings.** Develop a brand for it with an AI collaborator, then make those decisions visible in a professional website and a live style guide.
 
-This template starts with a working, deliberately neutral storefront. Your audience, name, promise, logo, voice, and visual direction are **not chosen yet**. You make the decisions; the agent helps you explore, build, check, and revise them.
+**Current project: ASCEND.** The original neutral storefront has been developed into a futuristic Modernist brand using the Hero archetype and tagline “Become your own next.” The learner personally reviewed and approved the final visual direction and animation enhancements. The storefront and live style guide share the approved identity.
+
+The site remains a fictional classroom demonstration: S–XL selection, a temporary demo bag, and a clearly fictional $28 price. There are no real orders, payments, accounts, or persistence. Final automated checks passed and the learner approved the learning record for accuracy; the repository handoff and PR/merge workflow remain pending. No verified deployment URL is recorded.
 
 **A short record, visible to you:** your AI coach updates [LEARNING.md](LEARNING.md) with brief task-related explanations, observations and help received. It is AI-drafted, not a full transcript, and may be public with your repository. Review it and correct or remove excerpts before they are committed or pushed. Your instructor uses it alongside the project with this [simple three-part rubric](docs/assessment.md); the AI does not assign your grade.
 
 ## Start here
+
+**Windows PowerShell:** use `npm.cmd` in place of `npm` if execution policy blocks `npm.ps1`.
 
 1. Open [this template on GitHub](https://github.com/kaw393939/is117-brand-studio), select **Use this template → Create a new repository**, and create a **public** repository in your own account. Wait until the new repository shows its README before cloning. A template copy does not copy the instructor's issues.
 2. In your terminal, replace both placeholders with your account and new repository name:
@@ -54,15 +58,15 @@ You work at your own pace. There is no required class demonstration, quiz, separ
 
 ## What is here
 
-| File                                   | Purpose                                                                                                    |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `public/index.html`                    | Working storefront; the first branding feature is still pending                                            |
-| `public/styleguide.html`               | Live identity board using the storefront's shared styles and assets                                        |
-| `public/studio.html`                   | Short studio overview, also [available online](https://kaw393939.github.io/is117-brand-studio/studio.html) |
-| [SPEC.md](SPEC.md)                     | The concise record of your chosen decisions and evidence                                                   |
-| [AGENTS.md](AGENTS.md)                 | Instructions for your AI coach                                                                             |
-| [LEARNING.md](LEARNING.md)             | Brief AI-drafted conversation evidence for you to review; no full transcript or automatic grade            |
-| [docs/reference.md](docs/reference.md) | Short explanations and source links to use when needed                                                     |
+| File                                   | Purpose                                                                                                       |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `public/index.html`                    | ASCEND storefront with approved Modernist identity, accessible motion, size selection, and temporary demo bag |
+| `public/styleguide.html`               | Live identity board using the storefront's shared styles and assets                                           |
+| `public/studio.html`                   | Short studio overview, also [available online](https://kaw393939.github.io/is117-brand-studio/studio.html)    |
+| [SPEC.md](SPEC.md)                     | The concise record of your chosen decisions and evidence                                                      |
+| [AGENTS.md](AGENTS.md)                 | Instructions for your AI coach                                                                                |
+| [LEARNING.md](LEARNING.md)             | Brief AI-drafted conversation evidence for you to review; no full transcript or automatic grade               |
+| [docs/reference.md](docs/reference.md) | Short explanations and source links to use when needed                                                        |
 
 The README is the authoritative startup path. The online overview introduces the exercise; it does not replace your local project or chat.
 

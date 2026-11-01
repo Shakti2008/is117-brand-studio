@@ -27,11 +27,11 @@ test("development refreshes saved HTML, CSS, JavaScript and assets; plain previe
     target.waitForResponse(
       (response) => new URL(response.url()).pathname === "/__dev/events",
     );
-  const save = async (filename, transform) => {
+  const save = async (filename, transform, encoding = "utf8") => {
     const nextConnection = connected(page);
     const loaded = page.waitForEvent("load");
     const file = path.join(publicRoot, filename);
-    await writeFile(file, transform(await readFile(file, "utf8")));
+    await writeFile(file, transform(await readFile(file, encoding)));
     await loaded;
     await nextConnection;
   };
@@ -75,11 +75,22 @@ test("development refreshes saved HTML, CSS, JavaScript and assets; plain previe
       "saved-js",
     );
 
-    await save("assets/white-shirt.svg", (svg) =>
-      svg.replace("<svg ", '<svg width="123" height="123" '),
+    const replacementPng = await page.evaluate(() => {
+      const canvas = document.createElement("canvas");
+      canvas.width = 123;
+      canvas.height = 123;
+      const context = canvas.getContext("2d");
+      context.fillStyle = "white";
+      context.fillRect(0, 0, 123, 123);
+      return canvas.toDataURL("image/png").split(",")[1];
+    });
+    await save(
+      "assets/white-shirt-realistic.png",
+      () => Buffer.from(replacementPng, "base64"),
+      null,
     );
     await expect(
-      page.locator('img[src="assets/white-shirt.svg"]'),
+      page.locator('img[src="assets/white-shirt-realistic.png"]'),
     ).toHaveJSProperty("naturalWidth", 123);
 
     await expect(plain).toHaveTitle(originalTitle);

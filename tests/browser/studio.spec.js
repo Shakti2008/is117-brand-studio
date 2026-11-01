@@ -1,6 +1,300 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
+test("motion vocabulary is one-shot and keeps CTA, price, shirt, and form stationary", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.setViewportSize({ width: 390, height: 812 });
+  await page.goto("/");
+  await expect(page.locator(".hero-composition")).toHaveClass(/reveal-arrived/);
+  const animation = (selector, pseudo = null) =>
+    page.locator(selector).evaluate((element, pseudoElement) => {
+      const style = getComputedStyle(element, pseudoElement);
+      return {
+        name: style.animationName,
+        duration: style.animationDuration,
+        count: style.animationIterationCount,
+      };
+    }, pseudo);
+  expect(await animation(".hero-orbit")).toEqual({
+    name: "ascend-circle",
+    duration: "1s",
+    count: "1",
+  });
+  expect(await animation(".hero-ring circle")).toEqual({
+    name: "ascend-ring",
+    duration: "1s",
+    count: "1",
+  });
+  expect((await animation("#hero-title")).name).toBe("ascend-left");
+  await expect
+    .poll(() =>
+      page
+        .locator("#hero-title")
+        .evaluate((element) =>
+          getComputedStyle(element).getPropertyValue("--motion-travel").trim(),
+        ),
+    )
+    .toBe("24px");
+  for (const selector of [
+    ".hero-action",
+    ".shirt-image",
+    ".price-row",
+    "#product-form",
+  ]) {
+    const movingAncestor = await page.locator(selector).evaluate((element) => {
+      for (let node = element; node; node = node.parentElement) {
+        const style = getComputedStyle(node);
+        if (
+          style.translate !== "none" &&
+          style.translate !== "0px" &&
+          style.translate !== "0px 0px"
+        )
+          return true;
+        if (node.hasAttribute("data-reveal-item")) return true;
+      }
+      return false;
+    });
+    expect(movingAncestor, selector).toBeFalsy();
+  }
+  await page.locator(".product-section").scrollIntoViewIfNeeded();
+  await expect(page.locator(".product-section")).toHaveClass(/reveal-arrived/);
+  expect((await animation(".price-accent")).name).toBe("ascend-pop");
+  expect((await animation(".product-information", "::before")).name).toBe(
+    "ascend-right",
+  );
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBeTruthy();
+});
+
+test("natural scroll reveals continue after anchor navigation and product interaction", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 812 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  await page.evaluate(() => {
+    window.revealEvents = [];
+    document.addEventListener("animationstart", (event) => {
+      if (event.animationName === "ascend-rise") {
+        window.revealEvents.push(
+          event.target.closest("[data-reveal]")?.className,
+        );
+      }
+    });
+  });
+  await expect(page.locator(".direction-section")).toHaveClass(
+    /reveal-waiting/,
+  );
+  await page
+    .getByRole("link", { name: "Choose your next step.", exact: true })
+    .click();
+  await page.locator('input[name="size"][value="M"]').check();
+  await page
+    .getByRole("button", { name: "Add to demo bag", exact: true })
+    .click();
+  await expect(page.locator("#bag-count")).toHaveText("1");
+  await expect(page.locator(".product-section")).toHaveClass(/reveal-settled/);
+  for (let step = 0; step < 14; step += 1) {
+    if (
+      await page
+        .locator(".direction-section")
+        .evaluate((element) => element.getBoundingClientRect().top < 160)
+    )
+      break;
+    await page.mouse.wheel(0, 240);
+    await page.waitForTimeout(100);
+  }
+  await expect(page.locator(".direction-section")).toHaveClass(
+    /reveal-arrived/,
+  );
+  await expect
+    .poll(() =>
+      page.evaluate(() =>
+        window.revealEvents.some((name) => name?.includes("direction-section")),
+      ),
+    )
+    .toBeTruthy();
+  await expect(page.locator("#bag-count")).toHaveText("1");
+});
+
+test("realistic hero is loaded, transparently backed, and honestly disclosed", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const image = page.locator(".hero-product .shirt-image");
+  await expect(image).toHaveAttribute(
+    "src",
+    "assets/white-shirt-realistic.png",
+  );
+  const pixels = await image.evaluate((element) => {
+    const canvas = document.createElement("canvas");
+    canvas.width = element.naturalWidth;
+    canvas.height = element.naturalHeight;
+    const context = canvas.getContext("2d");
+    context.drawImage(element, 0, 0);
+    return {
+      loaded: element.complete && element.naturalWidth > 0,
+      cornerAlpha: context.getImageData(0, 0, 1, 1).data[3],
+      centerAlpha: context.getImageData(
+        canvas.width / 2,
+        canvas.height / 2,
+        1,
+        1,
+      ).data[3],
+    };
+  });
+  expect(pixels.loaded).toBeTruthy();
+  expect(pixels.cornerAlpha).toBe(0);
+  expect(pixels.centerAlpha).toBeGreaterThan(240);
+  await expect(page.locator(".hero-product .image-disclosure")).toContainText(
+    "AI-generated fictional product visualization",
+  );
+  for (const direction of ["modernist", "postmodernist"]) {
+    await page.goto(`/explorations/${direction}.html`);
+    await expect(page.locator(".shirt")).toHaveAttribute(
+      "src",
+      "../assets/white-shirt.svg",
+    );
+  }
+});
+
+test("storefront and live guide share actual palette, logo size, and display typography", async ({
+  page,
+}) => {
+  const readIdentity = async () =>
+    page.evaluate(() => {
+      const tokens = getComputedStyle(document.body);
+      const heading = getComputedStyle(
+        document.querySelector("#hero-title, .type-display"),
+      );
+      const logo = document.querySelector(".wordmark").getBoundingClientRect();
+      return {
+        palette: [
+          "--color-paper",
+          "--color-ink",
+          "--color-accent",
+          "--color-gold",
+        ].map((name) => tokens.getPropertyValue(name).trim()),
+        type: [
+          heading.fontFamily,
+          heading.fontWeight,
+          heading.fontSize,
+          heading.letterSpacing,
+          heading.lineHeight,
+        ],
+        logo: [logo.width, logo.height],
+      };
+    });
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 1000 });
+    await page.goto("/");
+    const shop = await readIdentity();
+    await page.goto("/styleguide.html");
+    expect(await readIdentity()).toEqual(shop);
+    expect(shop.logo).toEqual([175, 28]);
+    await expect(
+      page.locator('[data-color-token="--color-accent"]'),
+    ).toHaveText(shop.palette[2]);
+  }
+});
+
+test("optional intentions offer consistent suggestions without gating shopping or persisting", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const focus = page.getByRole("button", { name: "Focus", exact: true });
+  const explore = page.getByRole("button", { name: "Explore", exact: true });
+  await expect(focus).toHaveAttribute("aria-pressed", "false");
+  await expect(explore).toHaveAttribute("aria-pressed", "false");
+  await focus.click();
+  await expect(focus).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#intention-message")).toContainText(
+    "simple, familiar outfit",
+  );
+  await explore.click();
+  await expect(focus).toHaveAttribute("aria-pressed", "false");
+  await expect(explore).toHaveAttribute("aria-pressed", "true");
+  await expect(page.locator("#intention-message")).toContainText(
+    "color or layer",
+  );
+  await expect(page.locator("#bag-count")).toHaveText("0");
+  await page
+    .getByRole("button", { name: "Clear my choice", exact: true })
+    .click();
+  await expect(focus).toBeFocused();
+  await expect(explore).toHaveAttribute("aria-pressed", "false");
+  await focus.click();
+  await page.reload();
+  await expect(focus).toHaveAttribute("aria-pressed", "false");
+  await page
+    .getByRole("link", { name: "Choose your next step.", exact: true })
+    .click();
+  await expect(page).toHaveURL(/#product-form$/);
+  await expect(page.locator("#product-form")).toBeInViewport();
+  await page.locator('input[name="size"][value="XL"]').check();
+  await page
+    .getByRole("button", { name: "Add to demo bag", exact: true })
+    .click();
+  await expect(page.locator("#bag-count")).toHaveText("1");
+});
+
+test("reduced motion disables entrance, hover, and bag movement", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await page.locator('input[name="size"][value="S"]').check();
+  await page
+    .getByRole("button", { name: "Add to demo bag", exact: true })
+    .click();
+  for (const selector of [
+    ".hero-copy",
+    ".hero-product",
+    ".hero-orbit",
+    ".hero-axis",
+    ".hero-ring circle",
+    ".price-accent",
+    "#hero-title",
+    "#bag-count",
+    ".button-primary",
+  ]) {
+    const styles = await page
+      .locator(selector)
+      .first()
+      .evaluate((element) => {
+        const style = getComputedStyle(element);
+        return {
+          animation: style.animationName,
+          transition: style.transitionDuration,
+        };
+      });
+    expect(styles).toEqual({ animation: "none", transition: "0s" });
+  }
+});
+
+test("core brand content and size controls remain visible without JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  try {
+    await page.goto("/");
+    await expect(page.locator("#hero-title")).toBeVisible();
+    await expect(page.locator("#product-form")).toBeVisible();
+    await expect(page.locator("#intention-fallback")).toBeVisible();
+    await expect(page.locator("#intention-controls")).toBeHidden();
+    await page.locator('input[name="size"][value="M"]').check();
+    await expect(page.locator('input[name="size"][value="M"]')).toBeChecked();
+  } finally {
+    await context.close();
+  }
+});
+
 test("negative: choosing no size explains the problem and keeps the bag empty", async ({
   page,
 }) => {

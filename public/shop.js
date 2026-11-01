@@ -14,6 +14,9 @@
 
   const renderBag = () => {
     bagCount.textContent = String(bag.length);
+    bagCount.classList.remove("bag-feedback");
+    void bagCount.offsetWidth;
+    bagCount.classList.add("bag-feedback");
     clearBag.disabled = bag.length === 0;
     bagItems.replaceChildren();
     sizes.forEach((size) => {

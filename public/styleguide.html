@@ -5,33 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="The live, neutral brand board for the IS117 T-shirt storefront. Shared tokens and assets keep design choices connected to the page."
+      content="The live identity system behind ASCEND: shared logo, colors, typography, components, voice, and accessible motion."
     />
-    <title>Live style guide — Your Brand starter</title>
+    <title>ASCEND — Live style guide</title>
     <link rel="icon" href="data:," />
     <link rel="stylesheet" href="styles.css" />
     <script src="styleguide.js" defer></script>
+    <script src="motion.js" defer></script>
   </head>
-  <body>
+  <body class="ascend">
     <a class="skip-link" href="#main">Skip to content</a>
-    <aside class="starter-notice" aria-label="Starter information">
-      <span
-        ><strong>Neutral examples.</strong> Replace this identity after your
-        decisions; this board shares the storefront’s CSS and logo.</span
-      ><a href="studio.html">Studio brief <span aria-hidden="true">↗</span></a>
-    </aside>
     <header class="site-header wrap">
       <a
         class="brand-link"
         href="index.html"
-        aria-label="Your Brand storefront home"
-        ><img
+        aria-label="ASCEND storefront home"
+        ><svg
           class="wordmark"
-          src="assets/wordmark.svg"
-          alt="Neutral starter wordmark"
-          width="175"
-          height="26"
-      /></a>
+          viewBox="0 0 350 56"
+          role="img"
+          aria-label="ASCEND"
+        >
+          <use href="assets/ascend-wordmark.svg#wordmark" /></svg
+      ></a>
       <nav class="main-nav" aria-label="Main navigation">
         <a class="nav-link" href="index.html">Shop</a
         ><a class="nav-link" href="styleguide.html" aria-current="page"
@@ -40,136 +36,136 @@
           >Studio <span aria-hidden="true">↗</span></a
         >
       </nav>
-      <span class="micro-label">Live brand board</span>
+      <span class="micro-label">ASCEND / Identity system 01</span>
     </header>
-    <main id="main">
+    <main id="main" tabindex="-1">
       <section class="page-hero wrap" aria-labelledby="guide-title">
-        <p class="eyebrow">
-          <span class="status-dot" aria-hidden="true"></span> Identity / version
-          00 / neutral starter
-        </p>
-        <h1 id="guide-title">A brand, kept<br />in one place.</h1>
+        <p class="eyebrow">ASCEND / Live identity system 01</p>
+        <h1 id="guide-title">A clear<br />direction.</h1>
         <p class="hero-summary">
-          A working board for the choices behind the storefront.
-          <strong>These are neutral examples, ready to replace.</strong> Decide
-          who the brand serves before making its identity your own.
+          The same identity. From the first impression to the smallest
+          interaction. A live reference for the storefront’s actual styles and
+          assets.
         </p>
       </section>
       <nav class="page-subnav wrap" aria-label="Style guide sections">
-        <a class="section-link" href="#direction">00 Direction</a
-        ><a class="section-link" href="#logo">01 Logo</a
-        ><a class="section-link" href="#palette">02 Color</a
-        ><a class="section-link" href="#type">03 Type</a
-        ><a class="section-link" href="#spacing">04 Space</a
-        ><a class="section-link" href="#buttons">05 Buttons</a
-        ><a class="section-link" href="#voice">06 Voice</a>
+        <a class="section-link" href="#direction">00 direction</a
+        ><a class="section-link" href="#logo">01 logo</a
+        ><a class="section-link" href="#palette">02 palette</a
+        ><a class="section-link" href="#type">03 type</a
+        ><a class="section-link" href="#spacing">04 spacing</a
+        ><a class="section-link" href="#buttons">05 buttons</a
+        ><a class="section-link" href="#voice">06 voice</a
+        ><a class="section-link" href="#motion">07 motion</a
+        ><a class="section-link" href="#imagery">08 imagery</a>
       </nav>
-
       <section
         id="direction"
         class="guide-section wrap"
         aria-labelledby="direction-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">00 / Direction</span>
-          <h2 id="direction-title">Decisions first.</h2>
-          <p>Record your agreed reasoning in SPEC.md, then reflect it here.</p>
+          <h2 id="direction-title">Purpose before<br />decoration.</h2>
+          <p>ASCEND / Hero archetype / Futuristic Modernism</p>
         </div>
-        <div class="guide-content">
-          <span class="draft-label">Not a completed brand strategy</span>
+        <div class="guide-content" data-reveal-item>
           <div class="decision-grid">
             <div>
-              <h3>Audience</h3>
-              <p class="undecided">To decide</p>
+              <h3>Audience hypotheses</h3>
               <p>
-                Use your personas to identify a need this page should answer.
+                College students moving between classes and activities;
+                creative, technology-oriented young adults moving between work
+                and casual outings. These are unvalidated hypotheses.
               </p>
             </div>
             <div>
-              <h3>Archetype</h3>
-              <p class="undecided">To decide</p>
-              <p>Choose one and explain the personality it gives the brand.</p>
+              <h3>Brand promise</h3>
+              <p>
+                ASCEND transforms an everyday essential into a reminder to keep
+                moving toward your goals.
+              </p>
             </div>
             <div>
-              <h3>Visual direction</h3>
-              <p class="undecided">To decide</p>
+              <h3>Design direction</h3>
               <p>
-                Compare approaches, then justify your choice for this audience.
+                Geometric order, striking scale, clear hierarchy. A personal
+                choice intended to communicate confidence and focus, not a
+                measured audience effect.
               </p>
             </div>
           </div>
         </div>
       </section>
-
       <section
         id="logo"
         class="guide-section wrap"
         aria-labelledby="logo-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">01 / Logo</span>
-          <h2 id="logo-title">A placeholder<br />with a purpose.</h2>
-          <p>
-            Replace after your decisions. The same SVG appears on the
-            storefront.
-          </p>
+          <h2 id="logo-title">One mark.<br />A clear presence.</h2>
+          <p>Original outlined geometry. One solid color.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="logo-board">
-            <img
-              src="assets/wordmark.svg"
-              alt="Neutral starter wordmark"
-              width="350"
-              height="52"
-            />
+            <svg
+              class="guide-wordmark"
+              viewBox="0 0 350 56"
+              role="img"
+              aria-label="ASCEND, white on charcoal"
+            >
+              <use href="assets/ascend-wordmark.svg#wordmark" />
+            </svg>
           </div>
           <div class="logo-variants">
             <div class="logo-variant">
-              <img
-                class="logo-small"
-                src="assets/wordmark.svg"
-                alt="Neutral starter wordmark at a small size"
-                width="110"
-                height="16"
-              />
-              <p>Small-size preview · 110px wide</p>
+              <svg
+                class="nav-wordmark"
+                viewBox="0 0 350 56"
+                role="img"
+                aria-label="ASCEND at navigation size"
+              >
+                <use href="assets/ascend-wordmark.svg#wordmark" />
+              </svg>
+              <p>Navigation / 175 × 28px</p>
             </div>
-            <div class="logo-variant">
-              <img
-                class="logo-mono"
-                src="assets/wordmark.svg"
-                alt="Neutral starter wordmark in monochrome"
-                width="190"
-                height="28"
-              />
-              <p>Monochrome preview · one color</p>
+            <div class="logo-variant logo-light">
+              <svg
+                class="guide-wordmark"
+                viewBox="0 0 350 56"
+                role="img"
+                aria-label="ASCEND, black on white"
+              >
+                <use href="assets/ascend-wordmark.svg#wordmark" />
+              </svg>
+              <p class="logo-caption">
+                Light-background alternate / black on white
+              </p>
             </div>
           </div>
           <p class="guide-note">
-            Check your replacement at the actual header size and in one color. A
-            simple original wordmark is enough; the same SVG may serve each
-            presentation if it works. This one-color preview uses transparent
-            artwork with a flat black treatment. Give it breathing room and a
-            useful text alternative. Keep the shared source at
-            <code>assets/wordmark.svg</code>.
+            Primary: white on charcoal. Alternate: black on white. Shared
+            source: <code>assets/ascend-wordmark.svg</code>. Preserve
+            proportions, generous clear space, and open counters. The ascending
+            opening in the A stays subtle. No trademark clearance claimed.
           </p>
         </div>
       </section>
-
       <section
         id="palette"
         class="guide-section wrap"
         aria-labelledby="palette-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">02 / Color</span>
-          <h2 id="palette-title">Color has<br />a job to do.</h2>
-          <p>
-            Neutral starter roles. The swatches and values come from the same
-            shared CSS tokens.
-          </p>
+          <h2 id="palette-title">Each color.<br />A purpose.</h2>
+          <p>Live values from the storefront’s shared CSS variables.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="palette-grid">
             <article class="palette-card">
               <div
@@ -178,7 +174,7 @@
               ></div>
               <h3>Paper</h3>
               <code data-color-token="--color-paper">CSS token</code>
-              <p>Page background</p>
+              <p>Charcoal page background</p>
             </article>
             <article class="palette-card">
               <div
@@ -187,7 +183,7 @@
               ></div>
               <h3>Ink</h3>
               <code data-color-token="--color-ink">CSS token</code>
-              <p>Text and primary action</p>
+              <p>Primary white text</p>
             </article>
             <article class="palette-card">
               <div
@@ -196,7 +192,16 @@
               ></div>
               <h3>Accent</h3>
               <code data-color-token="--color-accent">CSS token</code>
-              <p>Starter notice and emphasis</p>
+              <p>Deep-red geometry and actions</p>
+            </article>
+            <article class="palette-card">
+              <div
+                class="color-swatch"
+                style="--swatch-color: var(--color-gold)"
+              ></div>
+              <h3>Gold</h3>
+              <code data-color-token="--color-gold">CSS token</code>
+              <p>Restrained detail and focus</p>
             </article>
             <article class="palette-card">
               <div
@@ -205,7 +210,7 @@
               ></div>
               <h3>Soft</h3>
               <code data-color-token="--color-soft">CSS token</code>
-              <p>Image and example surfaces</p>
+              <p>Raised surfaces</p>
             </article>
             <article class="palette-card">
               <div
@@ -218,61 +223,54 @@
             </article>
           </div>
           <p class="guide-note">
-            Give each color a role. Check contrast for the actual text,
-            backgrounds, focus indicators, and button states you use.
+            White text on red for actions. Gold details on charcoal. Do not use
+            red as small text on charcoal. Focus indicators and error messages
+            use separately readable tones.
           </p>
         </div>
       </section>
-
       <section
         id="type"
         class="guide-section wrap"
         aria-labelledby="type-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">03 / Typography</span>
-          <h2 id="type-title">A clear<br />hierarchy.</h2>
-          <p>
-            System fonts keep this starter self-contained. Replace
-            intentionally, with readable fallbacks.
-          </p>
+          <h2 id="type-title">Strong scale.<br />Clear words.</h2>
+          <p>Self-contained system fonts. No external font requests.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="type-specimen">
             <span class="type-label"
-              >Display / shared display family / placeholder copy</span
+              >Display / shared family, weight, tracking, responsive scale</span
             >
-            <p class="type-display">Your message<br />starts here.</p>
-          </div>
-          <div class="type-specimen">
-            <span class="type-label">Body / shared body family</span>
-            <p class="type-body">
-              Use clear language to help someone understand the product and
-              choose their next step. Keep the words grounded in what you
-              actually know.
+            <p class="type-display">
+              Become<br />your own<br /><span class="type-next">next.</span>
             </p>
           </div>
           <div class="type-specimen">
-            <span class="type-label">Label / system monospace</span>
-            <p class="type-mono">One product. Deliberate choices.</p>
+            <span class="type-label">Body / shared body family</span>
+            <p class="type-body">A clear start. Your way.</p>
+          </div>
+          <div class="type-specimen">
+            <span class="type-label">Label / shared monospace family</span>
+            <p class="type-mono">ASCEND / Everyday essential</p>
           </div>
         </div>
       </section>
-
       <section
         id="spacing"
         class="guide-section wrap"
         aria-labelledby="spacing-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">04 / Spacing</span>
-          <h2 id="spacing-title">Room to read.</h2>
-          <p>
-            Shared spacing tokens create a repeatable rhythm. Adapt the scale to
-            your direction.
-          </p>
+          <h2 id="spacing-title">Room to<br />move forward.</h2>
+          <p>Shared spacing tokens and deliberate section rhythm.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="spacing-grid">
             <div class="spacing-token">
               <div
@@ -323,93 +321,143 @@
               ><code data-space-token="--space-6">CSS token</code>
             </div>
           </div>
-          <p class="guide-note">
-            Use smaller gaps for related information and larger gaps between
-            sections. Check the rhythm at phone and desktop widths.
-          </p>
         </div>
       </section>
-
       <section
         id="buttons"
         class="guide-section wrap"
         aria-labelledby="buttons-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">05 / Interaction</span>
-          <h2 id="buttons-title">The next<br />step, visible.</h2>
-          <p>These visual samples use the storefront’s button classes.</p>
+          <h2 id="buttons-title">A clear<br />next step.</h2>
+          <p>The same action, selection, and feedback styles as the shop.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="button-samples">
-            <span class="button button-primary"
-              >Primary action <span aria-hidden="true">↗</span></span
-            ><span class="button button-secondary"
-              >Secondary action <span aria-hidden="true">↗</span></span
+            <a class="button button-primary" href="index.html#product-form"
+              >Choose your next step. <span aria-hidden="true">↗</span></a
+            ><a class="button button-secondary" href="index.html#demo-bag"
+              >View demo bag</a
             >
           </div>
           <p class="guide-note">
-            Use a clear action label and a visible keyboard focus state. Try the
-            real size choice, validation, and demo-bag feedback on the
-            <a href="index.html">storefront</a>.
+            Native size radios remain keyboard operable. Missing-size feedback
+            does not add an item. A valid size updates the bag and its polite
+            live announcement. Optional Focus/Explore choices never gate
+            shopping.
           </p>
         </div>
       </section>
-
       <section
         id="voice"
         class="guide-section wrap"
         aria-labelledby="voice-title"
+        data-reveal
       >
-        <div class="section-heading">
+        <div class="section-heading" data-reveal-item data-motion="left">
           <span class="section-number">06 / Voice</span>
-          <h2 id="voice-title">Words are<br />design, too.</h2>
-          <p>
-            Replace this neutral example after choosing your audience and
-            archetype.
-          </p>
+          <h2 id="voice-title">Confidence,<br />without pressure.</h2>
+          <p>Confident. Encouraging. Direct. Independent.</p>
         </div>
-        <div class="guide-content">
+        <div class="guide-content" data-reveal-item>
           <div class="voice-grid">
             <div>
-              <h3>Neutral interface example</h3>
-              <p class="voice-example">“Choose a size.”</p>
-              <p>Short, direct, and specific about the next action.</p>
+              <h3>Unity</h3>
+              <p class="voice-example">Your goals. Your pace.</p>
+              <p>
+                Shared respect for individual progress, without invented
+                membership or pressure to conform. This is an intended
+                mechanism, not proven audience behavior.
+              </p>
             </div>
             <div>
-              <h3>Your brand voice is still open</h3>
+              <h3>Commitment &amp; Consistency</h3>
               <p>
-                Decide how your brand should sound and show that with a short
-                sample. Use honest claims. Ethical persuasion helps people make
-                a choice without invented reviews, urgency, or authority.
+                Visitors can voluntarily choose Focus or Explore, then receive
+                an optional suggestion consistent with that intention. No
+                enrollment, persistence, or purchase requirement.
               </p>
             </div>
           </div>
         </div>
       </section>
-
-      <div class="guide-footer-note wrap">
-        <p>
-          <strong>A living reference.</strong> Change the shared tokens and
-          logo, then compare this board with the storefront at the same width.
-          Check the logo, typography, components, color roles, and voice text;
-          sharing a stylesheet alone does not keep every example current. Save
-          the reason for your choices in SPEC.
-        </p>
-        <a href="index.html"
-          >View the storefront <span aria-hidden="true">↗</span></a
-        >
-      </div>
+      <section
+        id="motion"
+        class="guide-section wrap"
+        aria-labelledby="motion-title"
+        data-reveal
+      >
+        <div class="section-heading" data-reveal-item data-motion="left">
+          <span class="section-number">07 / Motion</span>
+          <h2 id="motion-title">Presence,<br />not distraction.</h2>
+          <p>Short, purposeful motion with an immediate static alternative.</p>
+        </div>
+        <div class="guide-content" data-reveal-item>
+          <p>
+            Hero circle expansion and ring draw: 1000ms, once. Hero text: 750ms
+            from the left, 48px. Product text and decorative frames: 750ms, 40px
+            from opposite sides. Direction text: 700ms, 40px. Bag heading:
+            650ms, 32px; labels stagger by 90ms. Price accent: 450ms, scaling
+            85% to 100% without overshoot. Other text staggers by 100ms. Mobile
+            travel is 24px. Button transitions: 180ms. Bag feedback: 400ms.
+            Reduced-motion preferences disable movement and smooth scrolling.
+            Content remains visible if JavaScript or IntersectionObserver is
+            unavailable.
+          </p>
+          <p class="guide-note">
+            Interactive elements and every ancestor containing controls stay
+            stationary; only noninteractive text and decorative frames
+            translate. Focus or anchor navigation settles only the relevant
+            group, preserving later scroll reveals. No looping product motion,
+            flashing, scroll trapping, or hidden essential information. The same
+            motion classes and rules are shared with the storefront.
+          </p>
+        </div>
+      </section>
+      <section
+        id="imagery"
+        class="guide-section wrap"
+        aria-labelledby="imagery-title"
+        data-reveal
+      >
+        <div class="section-heading" data-reveal-item data-motion="left">
+          <span class="section-number">08 / Imagery</span>
+          <h2 id="imagery-title">Depth.<br />Without claims.</h2>
+          <p>The same hero asset used by the storefront.</p>
+        </div>
+        <div class="guide-content" data-reveal-item>
+          <figure class="guide-product">
+            <img
+              src="assets/white-shirt-realistic.png"
+              alt="AI-generated fictional visualization of a plain white crew-neck T-shirt with natural folds"
+              width="1312"
+              height="1200"
+            />
+            <figcaption class="image-disclosure">
+              AI-generated fictional product visualization. Not a real product
+              photograph or evidence of materials or fit.
+            </figcaption>
+          </figure>
+          <p class="guide-note">
+            Original asset generated with the built-in image tool, without
+            importing third-party photography. The original SVG and both
+            comparison previews remain unchanged. Natural folds, soft lighting,
+            a quiet construction grid, and tighter spacing refine presentation
+            without adding product specifications.
+          </p>
+        </div>
+      </section>
     </main>
     <footer class="site-footer wrap">
       <p>
-        IS117 Brand Studio <span class="footer-separator"> / </span> Neutral
-        starter
+        ASCEND <span class="footer-separator"> / </span> Become your own next.
       </p>
-      <p class="footer-tagline">Fictional product. Real design decisions.</p>
-      <a href="https://github.com/kaw393939/is117-brand-studio#readme"
-        >Project README <span aria-hidden="true">↗</span></a
-      >
+      <p class="footer-tagline">
+        A fictional storefront. A personal direction.
+      </p>
+      <a href="studio.html">About the studio ↗</a>
     </footer>
   </body>
 </html>
