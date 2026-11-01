@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 56" role="img" aria-labelledby="title">
+  <title id="title">ASCEND</title>
+  <g id="wordmark" fill="currentColor" fill-rule="evenodd">
+    <path d="M2 48 20 8H30L48 48H36L32 38H17L13 48ZM21 28 29 25 25 16Z" />
+    <path d="M66 8H104V18H71L68 21V24H95L104 33V40L96 48H58V38H91L94 35V34H67L58 25V16Z" />
+    <path d="M124 8H162V18H128L124 22V34L128 38H162V48H124L114 38V18Z" />
+    <path d="M174 8H216V18H185V23H211V33H185V38H216V48H174Z" />
+    <path d="M228 48V8H239L264 32V8H275V48H264L239 24V48Z" />
+    <path d="M288 8H324L344 28 324 48H288ZM299 18V38H320L330 28 320 18Z" />
+  </g>
+</svg>
