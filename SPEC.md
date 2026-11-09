@@ -277,16 +277,3 @@ ASCEND will combine these approaches through a minimalist website, bold messagin
 
 ChatGPT assisted with organizing the competitor comparisons, developing persona hypotheses, and drafting the research. The competitor observations and sources should be verified against the linked websites.
 
-### Peer Feedback and Revisions
-
-**Reviewer:** Pending
-
-**GitHub feedback issue:** Pending
-
-**Decision and reasoning:** Pending
-
-**Related commit:** Pending
-
-**Verification:** Pending
-
-**Resolution:** Pending
