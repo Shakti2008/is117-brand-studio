@@ -158,3 +158,135 @@ On 2026-11-01 the learner explicitly confirmed that the updated learning-record 
 ## Later
 
 No follow-up is selected. After keeping `BRAND-001`, choose one next cycle: perhaps a brand story, a supported fit guide, or richer demo-bag behavior. Agree its scope and add one new spec ID at that time.
+
+
+## Research — T-Shirt (November 9, 2026)
+### Competitive Website Research
+
+**Research date:** November 9, 2026
+
+**1. Nike — Motivational Branding**
+
+Source: https://www.nike.com/
+
+Observation: Nike uses motivational messaging and strong visuals to connect its clothing with ambition and achievement.
+
+What this suggests: ASCEND can use motivational messaging to give the plain white T-shirt a meaning beyond its basic appearance.
+
+**2. Uniqlo — Minimalist Everyday Clothing**
+
+Source: https://www.uniqlo.com/us/en/
+
+Observation: Uniqlo emphasizes simplicity, versatility, and everyday clothing through clean layouts and product-focused content.
+
+What this suggests: ASCEND should use a minimalist website layout that makes the T-shirt easy to see and understand.
+
+**3. Gymshark — Lifestyle and Community**
+
+Source: https://www.gymshark.com/
+
+Observation: Gymshark connects its clothing with fitness, personal improvement, and a specific community.
+
+What this suggests: ASCEND should focus on a clearly defined audience rather than trying to appeal to everyone.
+
+### Two Brand Positions
+
+**Position 1 — Minimalist Everyday Wear**
+
+This position would focus on comfort, simplicity, and versatility. The website would use neutral colors, basic product photography, and straightforward descriptions.
+
+**Position 2 — Motivational Lifestyle Brand**
+
+This position would focus on ambition, individuality, and personal growth. The website would use bold typography, motivational messaging, and a modern visual style.
+
+**Chosen position:** Motivational Lifestyle Brand.
+
+I chose this position because it connects with ASCEND's Hero archetype and the idea of overcoming challenges and making progress.
+
+### Two Customer Persona Hypotheses
+
+**Persona 1 — Ambitious College Student**
+
+- Age: 18–24
+- Interests: Technology, fashion, academics, and personal development
+- Needs: Versatile everyday clothing
+- Motivation: Express confidence and individuality
+- Assumption: Students who value personal growth may connect with ASCEND's message.
+
+**Persona 2 — Young Creative Professional**
+
+- Age: 22–30
+- Interests: Technology, innovation, minimalist fashion, and career development
+- Needs: Simple clothing suitable for casual environments
+- Motivation: Express an independent and forward-thinking identity
+- Assumption: Young professionals may appreciate minimalist clothing with meaningful branding.
+
+### Selected Target Audience
+
+ASCEND's primary target audience is ambitious college students ages 18–24.
+
+I chose this audience because ASCEND's message of determination and personal growth may connect with students working toward their academic, personal, and career goals.
+
+Young creative professionals ages 22–30 are a possible secondary audience.
+
+These are audience hypotheses that still need feedback and testing.
+
+### Visual Style and Brand Character
+
+**Brand:** ASCEND
+
+**Archetype:** Hero
+
+**Slogan:** Become Your Own Next.
+
+ASCEND will use a modern, minimalist, and futuristic visual style. Black and white will be the main colors, with burgundy and gold accents.
+
+Bold typography will communicate confidence, while white space will keep the website organized and readable.
+
+The Hero archetype represents determination, courage, and personal progress.
+
+### Honest Persuasion
+
+ASCEND will use storytelling to connect the plain white T-shirt with personal growth.
+
+The website will not claim that wearing the shirt guarantees confidence or success. Instead, it will communicate the brand's values while providing clear and accurate product information.
+
+### Research Decisions
+
+From Nike, I learned the value of motivational messaging.
+
+From Uniqlo, I identified the importance of simplicity and product-focused design.
+
+From Gymshark, I identified the importance of targeting a specific audience.
+
+ASCEND will combine these approaches through a minimalist website, bold messaging, and a clear focus on ambitious college students.
+
+### Assumptions and Open Questions
+
+**Assumptions:**
+- College students may respond positively to motivational branding.
+- A minimalist website may make the product easier to understand.
+- Brand storytelling may help differentiate a plain white T-shirt.
+
+**Open questions:**
+- Would students prefer motivational messaging or simpler product descriptions?
+- Which accent color best communicates ASCEND's identity?
+- Does the website clearly explain how ASCEND differs from other clothing brands?
+
+### AI Assistance
+
+ChatGPT assisted with organizing the competitor comparisons, developing persona hypotheses, and drafting the research. The competitor observations and sources should be verified against the linked websites.
+
+### Peer Feedback and Revisions
+
+**Reviewer:** Pending
+
+**GitHub feedback issue:** Pending
+
+**Decision and reasoning:** Pending
+
+**Related commit:** Pending
+
+**Verification:** Pending
+
+**Resolution:** Pending
