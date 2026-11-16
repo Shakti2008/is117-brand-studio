@@ -6,7 +6,7 @@ Implementation date: 2026-11-16. This is the requested technical extension to th
 
 - Preserve the existing `demo_orders` schema and parameterized POST insert. No migrations, order deletion, or overwrite operations.
 - `server.mjs`: open the existing project-root `ascend-orders.sqlite` by default, close the connection with the server, and allow `ASCEND_DATABASE_PATH` / `createApp({ databasePath })` for isolated tests. Add parameterized `GET /api/orders/:id`, with 400 for invalid IDs, 404 for missing records, and 500 for storage errors. Distinguish malformed JSON from server failures.
-- Server validation allows S/M/L/XL and integer quantities 1�20. The server computes the fictional total at 2800 cents per shirt, ignoring any client-supplied price.
+- Server validation allows S/M/L/XL and integer quantities 1–20. The server computes the fictional total at 2800 cents per shirt, ignoring any client-supplied price.
 - `public/index.html` and `public/shop.js`: use existing button styles and live announcements for Simulate checkout, loading, failure, and confirmation. Prevent concurrent submissions and bag edits during submission. Empty bags disable checkout. Mixed-size and oversized bags receive helpful feedback, preserving the existing single-size order contract. Success clears the temporary bag; errors retain it.
 - Confirmation includes the saved order ID, size, quantity, fictional total, and explicit absence of payment/purchase/shipping. Network failure cannot establish whether an insert succeeded; the message warns that retrying could create another simulation. Idempotent retries are outside this implementation.
 - SQLite persistence requires the Node server. Static GitHub Pages cannot host the API. No localStorage, payment details, shipping information, or real purchases.
@@ -23,12 +23,12 @@ Implementation date: 2026-11-16. This is the requested technical extension to th
 - Earlier runs exposed two new test defects (separator encoding and loading-state timing); corrected the assertions and replaced a short delay with a controlled response gate. An earlier sandbox run also left test-server cleanup pending; it was interrupted, and the successful full run completed outside the sandbox.
 - After the final wording/screenshot-only change: `npx.cmd playwright test tests/browser/checkout.spec.js` passed 3/3 tests (7.5 seconds), and `npm.cmd run format:check`, `npm.cmd run lint`, and `git diff --check` passed. Inspected actual checkout screenshots at 1440px and 390px: controls and disclosure remain readable in the existing layout. Screenshots are local ignored artifacts under `test-results/`.
 
-No commit or push is authorized. Learner browser review of this extension has not been supplied. Existing learning-record excerpts remain unchanged.
+Implementation and automated testing are complete. The learner reports that the SQLite simulated checkout was merged into `main` through [pull request #5](https://github.com/Shakti2008/is117-brand-studio/pull/5). Review 2 peer feedback has not been documented. Existing learning-record excerpts remain unchanged.
 
 # IS117 Review 2 — Plan — ASCEND T-shirt
 
 **Repository:** https://github.com/Shakti2008/is117-brand-studio  
-**Status:** Plan drafted; SQLite build/testing and peer review pending.
+**Status:** SQLite simulated checkout implemented and tested; merged into `main` through [pull request #5](https://github.com/Shakti2008/is117-brand-studio/pull/5), as reported by the learner. Review 2 peer review remains pending.
 
 ## Brand and audience
 
@@ -62,13 +62,13 @@ No fabricated scarcity, reviews, discounts, materials, shipping or sustainabilit
 
 ## Required SQLite backend implementation plan
 
-The current project records a temporary demo bag; **SQLite has not been verified**. Browser storage alone is insufficient.
+The original implementation plan below is complete; the verification evidence above records the actual checks. The temporary demo bag remains separate from saved simulated orders in SQLite. Checkout and order retrieval work through the local Node server, not GitHub Pages: static Pages hosting cannot run the API or access the server-side SQLite database.
 
 1. Extend existing Node server with SQLite storage outside public files.
-2. Store `demo_orders`: generated ID, S/M/L/XL size, positive integer quantity, unit price 2800 cents, demo status, timestamp.
+2. Store `demo_orders`: generated ID, S/M/L/XL size, positive integer quantity, calculated total in cents at a fixed unit price of 2800 cents, simulated status, timestamp.
 3. Add validated create/read endpoints with parameterized SQL; calculate totals server-side.
 4. Connect existing bag to **Simulate checkout**; do not collect payments or imply real orders.
-5. Verify no-size, empty-bag, invalid quantity, correct total, and create → save → restart → reopen → retrieve. Link actual test results and code commits when performed.
+5. Verify no-size, empty-bag, invalid quantity, correct total, and create → save → restart → reopen → retrieve. Completed test results are recorded above; the learner-reported merge is linked in the status.
 
 ## Peer review and decision record
 
@@ -78,8 +78,8 @@ The current project records a temporary demo bag; **SQLite has not been verified
 
 ## AI assistance and honesty
 
-AI drafted this plan from the existing learner-approved SPEC and project record. No new student interviews, peer feedback, SQLite build, tests or deployment are claimed. The student should review and be able to explain the plan.
+AI drafted this plan from the existing learner-approved SPEC and project record and later updated its implementation status using the recorded automated test results and the learner’s report of the merge through pull request #5. No new student interviews, Review 2 peer feedback, learner browser observations, or deployment verification are claimed. The student should review and be able to explain the plan.
 
 ## Canvas update
 
-Updated the existing ASCEND plan with two approaches, five user stories and observable checks, Hero identity and honest persuasion, and the SQLite simulated-checkout implementation plan. Backend implementation/testing and peer review remain pending until verified. Repository: https://github.com/Shakti2008/is117-brand-studio
+Updated the existing ASCEND plan with two approaches, five user stories and observable checks, Hero identity and honest persuasion, and the SQLite simulated-checkout implementation plan. SQLite backend implementation and automated testing are complete, and the learner reports the changes merged into `main` through [pull request #5](https://github.com/Shakti2008/is117-brand-studio/pull/5). Review 2 peer review remains pending. Checkout requires the local Node server; it does not run on GitHub Pages. Repository: https://github.com/Shakti2008/is117-brand-studio
