@@ -159,8 +159,8 @@ On 2026-11-01 the learner explicitly confirmed that the updated learning-record 
 
 No follow-up is selected. After keeping `BRAND-001`, choose one next cycle: perhaps a brand story, a supported fit guide, or richer demo-bag behavior. Agree its scope and add one new spec ID at that time.
 
-
 ## Research — T-Shirt (November 9, 2026)
+
 ### Competitive Website Research
 
 **Research date:** November 9, 2026
@@ -264,11 +264,13 @@ ASCEND will combine these approaches through a minimalist website, bold messagin
 ### Assumptions and Open Questions
 
 **Assumptions:**
+
 - College students may respond positively to motivational branding.
 - A minimalist website may make the product easier to understand.
 - Brand storytelling may help differentiate a plain white T-shirt.
 
 **Open questions:**
+
 - Would students prefer motivational messaging or simpler product descriptions?
 - Which accent color best communicates ASCEND's identity?
 - Does the website clearly explain how ASCEND differs from other clothing brands?
@@ -276,4 +278,3 @@ ASCEND will combine these approaches through a minimalist website, bold messagin
 ### AI Assistance
 
 ChatGPT assisted with organizing the competitor comparisons, developing persona hypotheses, and drafting the research. The competitor observations and sources should be verified against the linked websites.
-
