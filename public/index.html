@@ -197,8 +197,8 @@
             </button>
           </form>
           <p class="demo-disclaimer">
-            A classroom interaction, using fictional product data. No order,
-            payment, or personal information is collected.
+            A classroom interaction, using fictional product data. No real
+            order, payment, or personal information is collected.
           </p>
         </div>
       </section>
@@ -296,11 +296,28 @@
             Your demo bag is empty. Choose a size to try it.
           </p>
           <ul id="bag-items" class="bag-items"></ul>
+          <button
+            id="simulate-checkout"
+            class="button button-primary"
+            type="button"
+            disabled
+          >
+            Simulate checkout
+          </button>
+          <p
+            id="checkout-status"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
           <button id="clear-bag" class="text-button" type="button" disabled>
             Empty demo bag
           </button>
           <p class="field-help">
-            The bag resets when this page reloads. There is no checkout.
+            The bag resets on reload. Simulate 1–20 shirts of one size per order
+            at a fictional $28 each. No payment, purchase, or shipping. Orders
+            persist in SQLite on the Node server. Static GitHub Pages cannot run
+            checkout.
           </p>
         </div>
       </section>

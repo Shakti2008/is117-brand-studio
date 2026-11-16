@@ -4,7 +4,7 @@
 
 **Current project: ASCEND.** The original neutral storefront has been developed into a futuristic Modernist brand using the Hero archetype and tagline “Become your own next.” The learner personally reviewed and approved the final visual direction and animation enhancements. The storefront and live style guide share the approved identity.
 
-The site remains a fictional classroom demonstration: S–XL selection, a temporary demo bag, and a clearly fictional $28 price. There are no real orders, payments, accounts, or persistence. Final automated checks passed and the learner approved the learning record for accuracy; the repository handoff and PR/merge workflow remain pending. No verified deployment URL is recorded.
+The site remains a fictional classroom demonstration: S–XL selection, a temporary demo bag, and a clearly fictional $28 price. Simulated orders persist in SQLite with the Node server. There are no real purchases, payments, shipping, or accounts. Static GitHub Pages cannot run checkout. Final automated checks passed and the learner approved the learning record for accuracy; the repository handoff and PR/merge workflow remain pending. No verified deployment URL is recorded.
 
 **A short record, visible to you:** your AI coach updates [LEARNING.md](LEARNING.md) with brief task-related explanations, observations and help received. It is AI-drafted, not a full transcript, and may be public with your repository. Review it and correct or remove excerpts before they are committed or pushed. Your instructor uses it alongside the project with this [simple three-part rubric](docs/assessment.md); the AI does not assign your grade.
 
@@ -35,7 +35,7 @@ The site remains a fictional classroom demonstration: S–XL selection, a tempor
 
 Save an HTML, CSS, JavaScript, or asset file under `public/` to refresh the local browser automatically; unsaved edits do not appear. A refresh resets the temporary demo bag. `npm start` is an alias for this same development mode. Press **Ctrl+C** in the terminal running the server to stop it. To switch to a plain preview, stop the server first, then use `npm run preview` and reopen its printed address. Refresh the browser yourself after saving. These commands serve your local files; publishing to GitHub Pages is a later step.
 
-**First success checkpoint:** you can see the neutral white T-shirt page, choose a size, and add it to the demo bag. Tell the agent what you actually see. The bag is a demonstration; it does not take payments, persist between visits, or place orders.
+**First success checkpoint:** you can see the neutral white T-shirt page, choose a size, and add it to the demo bag. Tell the agent what you actually see. The bag is a demonstration; it does not take payments, persist between visits, or place real orders. Simulated checkout saves fictional orders separately in SQLite.
 
 If a command fails, paste the real error into the same chat. If the port is in use, let the agent help you stop your earlier preview or use `PORT=5175 npm run dev`, then open its printed address. You can ask for a hint, an example, or a small recommendation at any time. You do not need to know the branding vocabulary first.
 
