@@ -12,7 +12,7 @@ export default defineConfig({
   webServer: {
     command: "node server.mjs",
     url: "http://127.0.0.1:5174",
-    env: { PORT: "5174" },
+    env: { PORT: "5174", ASCEND_DATABASE_PATH: ":memory:" },
     reuseExistingServer: false,
     timeout: 15000,
   },

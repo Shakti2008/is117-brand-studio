@@ -16,7 +16,7 @@ import { createApp } from "../server.mjs";
 let app;
 let base;
 before(async () => {
-  app = createApp();
+  app = createApp({ databasePath: ":memory:" });
   app.listen(0, "127.0.0.1");
   await once(app, "listening");
   base = `http://127.0.0.1:${app.address().port}`;
@@ -72,7 +72,10 @@ test("plain preview serves original HTML without development routes", async () =
 test("development injects its client into responses without changing saved HTML", async () => {
   const filename = new URL("../public/index.html", import.meta.url);
   const original = await readFile(filename, "utf8");
-  const development = createApp({ development: true });
+  const development = createApp({
+    development: true,
+    databasePath: ":memory:",
+  });
   development.listen(0, "127.0.0.1");
   await once(development, "listening");
   const address = `http://127.0.0.1:${development.address().port}`;
@@ -100,7 +103,7 @@ test("a symlink cannot expose a file outside the public directory", async () => 
   await mkdir(privateRoot);
   await writeFile(path.join(privateRoot, "notes.txt"), "private project notes");
   await symlink(privateRoot, path.join(publicRoot, "leak"), "junction");
-  const isolated = createApp({ publicRoot });
+  const isolated = createApp({ publicRoot, databasePath: ":memory:" });
   isolated.listen(0, "127.0.0.1");
   await once(isolated, "listening");
   try {
@@ -114,6 +117,94 @@ test("a symlink cannot expose a file outside the public directory", async () => 
     );
   } finally {
     await new Promise((resolve) => isolated.close(resolve));
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("checkout validates input and retrieves simulated orders", async () => {
+  const post = (body) =>
+    fetch(`${base}/api/orders`, { method: "POST", body: JSON.stringify(body) });
+  for (const body of [
+    null,
+    {},
+    { size: "XXL", quantity: 1 },
+    { size: "M", quantity: 0 },
+    { size: "M", quantity: 21 },
+    { size: "M", quantity: 1.5 },
+    { size: "M", quantity: "1" },
+    { size: "M'--", quantity: 1 },
+  ]) {
+    assert.equal((await post(body)).status, 400);
+  }
+  assert.equal(
+    (await fetch(`${base}/api/orders`, { method: "POST", body: "{" })).status,
+    400,
+  );
+  assert.equal(
+    (
+      await fetch(`${base}/api/orders`, {
+        method: "POST",
+        body: "x".repeat(10001),
+      })
+    ).status,
+    413,
+  );
+  for (const size of ["S", "M", "L", "XL"]) {
+    const response = await post({ size, quantity: 20, total_cents: 1 });
+    assert.equal(response.status, 201);
+    const order = await response.json();
+    assert.equal(order.size, size);
+    assert.equal(order.quantity, 20);
+    assert.equal(order.total_cents, 56000);
+    assert.equal(order.status, "simulated");
+    const saved = await fetch(`${base}/api/orders/${order.id}`);
+    assert.equal(saved.status, 200);
+    const record = await saved.json();
+    assert.ok(record.created_at);
+    delete record.created_at;
+    assert.deepEqual(record, order);
+  }
+  assert.equal((await fetch(`${base}/api/orders/999999`)).status, 404);
+  for (const id of ["0", "-1", "abc", "1.5", "9007199254740992"])
+    assert.equal((await fetch(`${base}/api/orders/${id}`)).status, 400);
+});
+
+test("SQLite retains orders after server and database close and reopen", async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), "ascend-orders-"));
+  const databasePath = path.join(directory, "orders.sqlite");
+  const start = async () => {
+    const server = createApp({ databasePath });
+    server.listen(0, "127.0.0.1");
+    await once(server, "listening");
+    return server;
+  };
+  let server = await start();
+  try {
+    const address = () =>
+      `http://127.0.0.1:${server.address().port}/api/orders`;
+    const response = await fetch(address(), {
+      method: "POST",
+      body: JSON.stringify({ size: "M", quantity: 1 }),
+    });
+    assert.equal(response.status, 201);
+    const order = await response.json();
+    await new Promise((resolve) => server.close(resolve));
+    server = await start();
+    const saved = await fetch(`${address()}/${order.id}`);
+    assert.equal(saved.status, 200);
+    const record = await saved.json();
+    assert.equal(record.id, order.id);
+    assert.equal(record.size, "M");
+    assert.equal(record.quantity, 1);
+    assert.equal(record.total_cents, 2800);
+    const next = await fetch(address(), {
+      method: "POST",
+      body: JSON.stringify({ size: "S", quantity: 2 }),
+    });
+    assert.ok((await next.json()).id > order.id);
+    assert.equal((await fetch(`${address()}/${order.id}`)).status, 200);
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
     await rm(directory, { recursive: true, force: true });
   }
 });

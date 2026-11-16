@@ -1,4 +1,5 @@
 import { createServer } from "node:http";
+import { DatabaseSync } from "node:sqlite";
 import { readFile, realpath } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
@@ -7,6 +8,23 @@ import { createDevelopmentReload } from "./dev-reload.mjs";
 const publicDirectory = path.resolve(
   fileURLToPath(new URL("./public/", import.meta.url)),
 );
+
+function openDatabase(databasePath) {
+  const db = new DatabaseSync(databasePath);
+
+  db.exec(`
+  CREATE TABLE IF NOT EXISTS demo_orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    size TEXT NOT NULL,
+    quantity INTEGER NOT NULL,
+    total_cents INTEGER NOT NULL,
+    status TEXT NOT NULL DEFAULT 'simulated',
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+  return db;
+}
+
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -25,12 +43,107 @@ const types = {
 export function createApp({
   development = false,
   publicRoot = publicDirectory,
+  databasePath = process.env.ASCEND_DATABASE_PATH ??
+    fileURLToPath(new URL("./ascend-orders.sqlite", import.meta.url)),
 } = {}) {
+  const db = openDatabase(databasePath);
   const reload = development ? createDevelopmentReload(publicRoot) : undefined;
   const app = createServer(async (request, response) => {
+    if (request.method === "GET" && request.url.startsWith("/api/orders/")) {
+      response.setHeader("Content-Type", "application/json");
+      const id = new URL(request.url, "http://localhost").pathname.slice(12);
+      if (!/^[1-9][0-9]*$/.test(id) || !Number.isSafeInteger(Number(id))) {
+        response.writeHead(400);
+        response.end(JSON.stringify({ error: "Invalid order ID" }));
+        return;
+      }
+      try {
+        const order = db
+          .prepare("SELECT * FROM demo_orders WHERE id = ?")
+          .get(Number(id));
+        response.writeHead(order ? 200 : 404);
+        response.end(
+          JSON.stringify(order ?? { error: "Simulated order not found" }),
+        );
+      } catch {
+        response.writeHead(500);
+        response.end(JSON.stringify({ error: "Unable to retrieve order" }));
+      }
+      return;
+    }
+    if (
+      request.method === "POST" &&
+      new URL(request.url, "http://localhost").pathname === "/api/orders"
+    ) {
+      response.setHeader("Content-Type", "application/json");
+
+      try {
+        let body = "";
+
+        for await (const chunk of request) {
+          body += chunk;
+
+          if (body.length > 10000) {
+            response.writeHead(413);
+            response.end(JSON.stringify({ error: "Request too large" }));
+            return;
+          }
+        }
+
+        let data;
+        try {
+          data = JSON.parse(body);
+        } catch {
+          response.writeHead(400);
+          response.end(JSON.stringify({ error: "Invalid JSON" }));
+          return;
+        }
+        const { size, quantity } = data ?? {};
+
+        if (
+          !["S", "M", "L", "XL"].includes(size) ||
+          !Number.isInteger(quantity) ||
+          quantity < 1 ||
+          quantity > 20
+        ) {
+          response.writeHead(400);
+          response.end(JSON.stringify({ error: "Invalid size or quantity" }));
+          return;
+        }
+
+        const totalCents = quantity * 2800;
+
+        const result = db
+          .prepare(
+            `INSERT INTO demo_orders
+             (size, quantity, total_cents)
+             VALUES (?, ?, ?)`,
+          )
+          .run(size, quantity, totalCents);
+
+        response.writeHead(201);
+        response.end(
+          JSON.stringify({
+            id: Number(result.lastInsertRowid),
+            size,
+            quantity,
+            total_cents: totalCents,
+            status: "simulated",
+          }),
+        );
+      } catch {
+        response.writeHead(500);
+        response.end(
+          JSON.stringify({ error: "Unable to save simulated order" }),
+        );
+      }
+
+      return;
+    }
+
     if (!["GET", "HEAD"].includes(request.method)) {
       response.writeHead(405, { Allow: "GET, HEAD" });
-      response.end("This demo serves files; it does not accept orders.");
+      response.end("Method not allowed.");
       return;
     }
     try {
@@ -78,7 +191,10 @@ export function createApp({
       );
     }
   });
-  app.on("close", () => reload?.close());
+  app.on("close", () => {
+    reload?.close();
+    db.close();
+  });
   return app;
 }
 

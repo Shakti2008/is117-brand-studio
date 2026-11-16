@@ -14,7 +14,7 @@ This is the durable agreement between the learner and agent. Keep it concise and
 
 ## Product boundary
 
-The product is the same white T-shirt throughout the comparison. The baseline offers a size selector and temporary demo bag. No real orders, payment, accounts, or persistence. Keep product facts stable between directions; do not add unsupported claims about materials, manufacturing, sustainability, fit, delivery, scarcity, reviews, or sales.
+The product is the same white T-shirt throughout the comparison. The baseline offers a size selector and temporary demo bag. No real orders, payment, accounts, or shipping. The later simulated-checkout extension persists fictional orders in server-side SQLite; see [implementation plan](docs/plan.md). Keep product facts stable between directions; do not add unsupported claims about materials, manufacturing, sustainability, fit, delivery, scarcity, reviews, or sales.
 
 ## Audience hypotheses
 
